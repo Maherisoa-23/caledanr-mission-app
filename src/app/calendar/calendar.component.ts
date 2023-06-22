@@ -8,6 +8,7 @@ import listPlugin from '@fullcalendar/list';
 
 import { INITIAL_EVENTS, createEventId } from './event-utils';
 import { AddEventComponent } from './add-event/add-event.component';
+import { EventService } from '../services/event.service';
 
 @Component({
   selector: 'app-calendar',
@@ -21,10 +22,12 @@ export class CalendarComponent implements OnInit {
 
   constructor(
     private changeDetector: ChangeDetectorRef,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private eventService : EventService
   ) { }
 
   ngOnInit(): void {
+    //this.eventService.saveEvents();
   }
 
   calendarOptions: CalendarOptions = {
