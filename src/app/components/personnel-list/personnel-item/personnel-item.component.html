@@ -1,9 +1,6 @@
 <div class="ms-2 me-auto">
-    <div class="fw-bold">Nom : {{personnal?.name}}</div>
-    <p *ngFor="let item of personnal?.personnal">
-      {{item.firstname}}
-    </p>
+    <div class="fw-bold">Nom : {{personnel?.firstname}} {{personnel?.lastname}}</div>
+    <p > Fonction : {{personnel?.jobPosition?.name}}</p>
+    <p > Contact : {{personnel?.phoneline}}</p>
   </div>
-  <span class="badge bg-primary rounded-pill" *ngIf="personnal?.personnal?.length">{{personnal?.personnal?.length}}</span>
-  <span class="badge bg-primary rounded-pill" *ngIf="!personnal?.personnal?.length">0</span>
 

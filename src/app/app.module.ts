@@ -24,6 +24,9 @@ import { JobItemComponent } from './components/job-list/job-item/job-item.compon
 import { JobListComponent } from './components/job-list/job-list.component';
 import { PersonnelItemComponent } from './components/personnel-list/personnel-item/personnel-item.component';
 import { PersonnelListComponent } from './components/personnel-list/personnel-list.component';
+import { EventListComponent } from './components/event-list/event-list.component';
+import { EventItemComponent } from './components/event-list/event-item/event-item.component';
+import { LandingPageComponent } from './components/landing-page/landing-page.component';
 
 
 const materialModule = [
@@ -44,7 +47,10 @@ const materialModule = [
     JobListComponent,
     JobItemComponent,
     TeamListComponent,
-    TeamItemComponent
+    TeamItemComponent,
+    EventListComponent,
+    EventItemComponent,
+    LandingPageComponent
   ],
   imports: [
     BrowserModule,

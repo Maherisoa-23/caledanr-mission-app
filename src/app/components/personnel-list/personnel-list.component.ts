@@ -9,7 +9,7 @@ import { PersonnelService } from 'src/app/services/personnel.service';
 })
 export class PersonnelListComponent implements OnInit {
   
-  private personnels : IPersonnel[] = [];
+  public personnels : IPersonnel[] = [];
 
   constructor(
     private personnelService : PersonnelService

@@ -1,0 +1,30 @@
+.main-container{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    background-color: #e2e8f0;
+    gap: 2rem;
+    padding: 2rem;
+
+    .stat-container{
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+        padding: 1rem;
+        border-radius: 2rem;
+        width: 30%;
+        height: 100%;
+        background-color: white;
+    }
+
+    .calendar-container {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+        width: 65%;
+        height: 100%;
+        border-radius: 2rem;
+        background-color: white;
+        padding: 2rem;
+    }
+}
