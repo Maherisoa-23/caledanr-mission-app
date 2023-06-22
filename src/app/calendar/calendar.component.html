@@ -1,8 +1,9 @@
-<button mat-raised-button (click)="openDialog('500ms', '500ms')">Open dialog slowly</button>
-<full-calendar [options]="calendarOptions" style="display: none;"></full-calendar>
 
-<ul>
-    <li *ngFor="let item of events">
-        {{item.title}}
-    </li>
-</ul>
+<full-calendar [options]="calendarOptions">
+	<ng-template #eventContent let-arg>
+		<div class="flex flex-row gap-4 justify-between">
+			<span>{{arg.timeText}}</span>
+			<span>{{arg.event.title}}</span>
+		</div>
+	</ng-template>
+</full-calendar>
