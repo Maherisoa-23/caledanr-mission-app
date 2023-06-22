@@ -1,27 +1,59 @@
-# CalendarApp
+# Personal Planning Application with FullCalendar and Angular
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.0.0.
+This project is a personal planning application built using Angular and FullCalendar. It provides a user-friendly interface for managing personal tasks, job-related information, team members, and events. The application leverages the power of FullCalendar library to display and interact with events in a calendar view.
 
-## Development server
+## Features
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+The application offers the following functionality:
 
-## Code scaffolding
+### CRUD Personal Tasks
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+- Create, read, update, and delete personal tasks
+- Assign due dates, priorities, and categories to tasks
+- Mark tasks as completed or pending
+- Filter tasks based on various criteria (due date, priority, etc.)
+- Visual representation of tasks on the calendar
 
-## Build
+### CRUD Job Information
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+- Manage job-related information such as interviews, deadlines, and meetings
+- Add, edit, and remove job-related events
+- Categorize events based on job positions or companies
+- Get an overview of upcoming job-related activities
 
-## Running unit tests
+### CRUD Team Members
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+- Create, view, update, and delete team members
+- Store essential information about team members (name, position, contact details, etc.)
+- Assign tasks or events to specific team members
+- Track team member availability and schedule meetings accordingly
 
-## Running end-to-end tests
+### CRUD Events
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+- Create, edit, and delete events
+- Specify event details such as title, start time, end time, and location
+- Drag and drop events to reschedule them
+- Display events in a monthly, weekly, or daily view
 
-## Further help
+## Installation
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+To run the application locally, follow these steps:
+
+1. Install the dependencies: `npm install`
+2. Start the development server: `ng serve`
+3. Open your browser and visit `http://localhost:4200`
+
+Make sure you have Node.js and Angular CLI installed on your machine before proceeding with the installation.
+
+## Configuration
+
+To configure the application, you may need to adjust certain settings such as API endpoints or database credentials. Modify the configuration file located at `src/app/config.ts` to update these settings according to your environment.
+
+## Contributing
+
+Contributions are welcome! If you find any bugs, have feature requests, or want to improve the application, please open an issue or submit a pull request. Make sure to follow the existing coding style and include appropriate test cases for new features or bug fixes.
+
+## License
+
+This project is licensed under the [MIT License](LICENSE).
+
