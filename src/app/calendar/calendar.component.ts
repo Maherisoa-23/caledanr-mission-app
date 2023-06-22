@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { CalendarOptions, DateSelectArg, EventApi, EventClickArg } from '@fullcalendar/core';
 import { MatDialog, MatDialogRef, MatDialogModule } from '@angular/material/dialog';
 import interactionPlugin from '@fullcalendar/interaction';
@@ -9,25 +9,40 @@ import listPlugin from '@fullcalendar/list';
 import { INITIAL_EVENTS, createEventId } from './event-utils';
 import { AddEventComponent } from './add-event/add-event.component';
 import { EventService } from '../services/event.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-calendar',
   templateUrl: './calendar.component.html',
   styleUrls: ['./calendar.component.scss']
 })
-export class CalendarComponent implements OnInit {
+export class CalendarComponent implements OnInit , OnDestroy{
   calendarVisible = true;
 
   currentEvents: EventApi[] = [];
+
+  events : any[] = [];
+  eventSubscription : Subscription;
 
   constructor(
     private changeDetector: ChangeDetectorRef,
     public dialog: MatDialog,
     private eventService : EventService
-  ) { }
+  ) {
+    this.eventSubscription = this.eventService.eventsSubject.subscribe(
+      (events : any[]) => {
+        this.events = events;
+      }
+    );
+    this.eventService.emitEvents();
+   }
+  ngOnDestroy(): void {
+    this.eventSubscription.unsubscribe();
+  }
 
   ngOnInit(): void {
     //this.eventService.saveEvents();
+    this.eventService.getEvents();
   }
 
   calendarOptions: CalendarOptions = {
