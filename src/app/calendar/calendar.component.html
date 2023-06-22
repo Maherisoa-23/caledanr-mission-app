@@ -1,0 +1,16 @@
+<div class="flex flex-row p-4 w-full">
+	<button 
+		(click)="addEvent()"
+		mat-flat-button>Ajouter un évènement</button>
+</div>
+
+<ng-container *ngIf="calendarOptions$ | async as calendarOption">
+	<full-calendar [options]="calendarOption!">
+		<ng-template #eventContent let-arg>
+			<div class="flex flex-row gap-4 justify-between">
+				<span>{{arg.timeText}}</span>
+				<span>{{arg.event.title}}</span>
+			</div>
+		</ng-template>
+	</full-calendar>
+</ng-container>

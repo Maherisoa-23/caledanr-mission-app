@@ -8,7 +8,6 @@ import { AppComponent } from './app.component';
 import { FullCalendarModule } from '@fullcalendar/angular';
 import { MatDialogModule } from '@angular/material/dialog';
 
-
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatButtonModule} from '@angular/material/button';
@@ -31,6 +30,8 @@ import {MatIconModule} from '@angular/material/icon';
 import { EventAddComponent } from './components/event-list/event-add/event-add.component';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatNativeDateModule} from '@angular/material/core';
+import { LoginComponent } from './login/login.component';
+import { PersonnelsComponent } from './personnels/personnels.component';
 
 const materialModule = [
   MatButtonModule,
@@ -57,7 +58,9 @@ const materialModule = [
     EventListComponent,
     EventItemComponent,
     LandingPageComponent,
-    EventAddComponent
+    EventAddComponent,
+    PersonnelsComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -67,11 +70,10 @@ const materialModule = [
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    HttpClientModule
+    HttpClientModule,
+	MatIconModule,
   ],
-  providers: [
-    HttpClient
-  ],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
