@@ -1,5 +1,5 @@
 import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
-import { CalendarOptions, DateSelectArg, EventApi, EventClickArg } from '@fullcalendar/core';
+import { CalendarOptions, DateSelectArg, EventApi, EventClickArg, EventInput } from '@fullcalendar/core';
 import { MatDialog, MatDialogRef, MatDialogModule } from '@angular/material/dialog';
 import interactionPlugin from '@fullcalendar/interaction';
 import dayGridPlugin from '@fullcalendar/daygrid';
@@ -10,39 +10,48 @@ import { INITIAL_EVENTS, createEventId } from './event-utils';
 import { AddEventComponent } from './add-event/add-event.component';
 import { EventService } from '../services/event.service';
 import { Subscription } from 'rxjs';
+import { IEvent } from 'models/event';
 
 @Component({
   selector: 'app-calendar',
   templateUrl: './calendar.component.html',
   styleUrls: ['./calendar.component.scss']
 })
-export class CalendarComponent implements OnInit , OnDestroy{
+export class CalendarComponent implements OnInit, OnDestroy {
   calendarVisible = true;
 
   currentEvents: EventApi[] = [];
 
-  events : any[] = [];
-  eventSubscription : Subscription;
+  events: IEvent[] = [];
+  eventSubscription: Subscription;
+
+  initialEvent: EventInput[] = [];
 
   constructor(
     private changeDetector: ChangeDetectorRef,
     public dialog: MatDialog,
-    private eventService : EventService
+    private eventService: EventService
   ) {
     this.eventSubscription = this.eventService.eventsSubject.subscribe(
-      (events : any[]) => {
+      (events: IEvent[]) => {
         this.events = events;
       }
     );
     this.eventService.emitEvents();
-   }
-  ngOnDestroy(): void {
-    this.eventSubscription.unsubscribe();
   }
 
-  ngOnInit(): void {
+  async ngOnInit() {
     //this.eventService.saveEvents();
-    this.eventService.getEvents();
+    await this.eventService.getEvents();
+    setTimeout(() => {
+      console.log('events ohh : ', this.initialEvent)
+      this.formatData(this.events);
+    }, 500);
+  }
+
+
+  ngOnDestroy(): void {
+    this.eventSubscription.unsubscribe();
   }
 
   calendarOptions: CalendarOptions = {
@@ -58,7 +67,7 @@ export class CalendarComponent implements OnInit , OnDestroy{
       right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
     },
     initialView: 'dayGridMonth',
-    initialEvents: INITIAL_EVENTS, // alternatively, use the `events` setting to fetch from a feed
+    initialEvents: this.initialEvent, // alternatively, use the `events` setting to fetch from a feed
     weekends: true,
     editable: true,
     selectable: true,
@@ -114,5 +123,19 @@ export class CalendarComponent implements OnInit , OnDestroy{
       enterAnimationDuration,
       exitAnimationDuration,
     });
+  }
+
+  formatData(events: IEvent[]) {
+    for (let index = 0; index < events.length; index++) {
+      const element = events[index];
+      this.initialEvent.push(
+        {
+          id: element.id.toString(),
+          title: element.title,
+          start: new Date(element.start),
+          end: new Date(element.end),
+        }
+      )
+    }
   }
 }
