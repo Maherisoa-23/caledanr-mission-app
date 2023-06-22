@@ -1,11 +1,13 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { CalendarOptions, DateSelectArg, EventApi, EventClickArg } from '@fullcalendar/core';
+import { MatDialog, MatDialogRef, MatDialogModule } from '@angular/material/dialog';
 import interactionPlugin from '@fullcalendar/interaction';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import listPlugin from '@fullcalendar/list';
 
 import { INITIAL_EVENTS, createEventId } from './event-utils';
+import { AddEventComponent } from './add-event/add-event.component';
 
 @Component({
   selector: 'app-calendar',
@@ -17,9 +19,11 @@ export class CalendarComponent implements OnInit {
 
   currentEvents: EventApi[] = [];
 
-  constructor(private changeDetector: ChangeDetectorRef) {
+  constructor(
+    private changeDetector: ChangeDetectorRef,
+    public dialog: MatDialog
+  ) { }
 
-  }
   ngOnInit(): void {
   }
 
@@ -83,5 +87,13 @@ export class CalendarComponent implements OnInit {
   handleEvents(events: EventApi[]) {
     this.currentEvents = events;
     this.changeDetector.detectChanges();
+  }
+
+  openDialog(enterAnimationDuration: string, exitAnimationDuration: string): void {
+    this.dialog.open(AddEventComponent, {
+      width: '250px',
+      enterAnimationDuration,
+      exitAnimationDuration,
+    });
   }
 }

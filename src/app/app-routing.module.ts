@@ -5,6 +5,8 @@ import { FourOhFourComponent } from './four-oh-four/four-oh-four.component';
 
 const routes: Routes = [
   { path: '', component:CalendarComponent},
+  { path: 'calendar', component:CalendarComponent},
+  { path: 'calendar/add-event', component:CalendarComponent},
   { path: 'not-found', component:FourOhFourComponent},
   { path: '**', redirectTo : 'not-found'},
 
