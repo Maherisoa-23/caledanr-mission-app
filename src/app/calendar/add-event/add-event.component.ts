@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { EventService } from 'src/app/services/event.service';
 
 @Component({
   selector: 'app-add-event',
@@ -11,7 +12,8 @@ export class AddEventComponent implements OnInit {
   eventForm: FormGroup;
 
   constructor(
-    private formBuilder : FormBuilder
+    private formBuilder : FormBuilder,
+    private eventService : EventService
   ) { 
     this.eventForm = this.formBuilder.group({
 			title: ['', [Validators.required]],
@@ -35,7 +37,7 @@ export class AddEventComponent implements OnInit {
   }
 
   onSubmitForm(){
-    console.log('form value : ', this.eventForm.value)
+    
   }
 
 }

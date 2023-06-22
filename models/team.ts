@@ -1,7 +1,7 @@
-import { IMember } from "./member";
+import { IPersonnel } from "./personnel.model";
 
 export interface ITeam {
 	id?     : number;
     name    : string;
-    members : IMember[];
+    personnal : IPersonnel[];
 }

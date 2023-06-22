@@ -6,11 +6,13 @@ import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import listPlugin from '@fullcalendar/list';
 
+
 import { INITIAL_EVENTS, createEventId } from './event-utils';
 import { AddEventComponent } from './add-event/add-event.component';
 import { EventService } from '../services/event.service';
 import { Subscription } from 'rxjs';
 import { IEvent } from 'models/event';
+import events from '../services/mocks/event.mock';
 
 @Component({
   selector: 'app-calendar',
@@ -40,9 +42,9 @@ export class CalendarComponent implements OnInit, OnDestroy {
     this.eventService.emitEvents();
   }
 
-  async ngOnInit() {
-    //this.eventService.saveEvents();
-    await this.eventService.getEvents$().subscribe(
+  ngOnInit() {
+
+    this.eventService.getEvents$().subscribe(
       (values) => {
         this.events = values;
         console.log('izy : ', this.events)

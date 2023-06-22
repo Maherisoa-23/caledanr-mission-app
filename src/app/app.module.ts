@@ -18,12 +18,12 @@ import {MatButtonModule} from '@angular/material/button';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {MatSelectModule} from '@angular/material/select';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { TeamsService } from './services/teams.service';
-import { TeamsMockService } from './services/mocks/teams.mock.service';
-import { PersonnelMockService } from './services/mocks/personnel.mock.service';
-import { PersonnelService } from './services/personnel.service';
-import { JobPositionMockService } from './services/mocks/job-position.mock.service';
-import { JobPositionService } from './services/job-position.service';
+import { PersonnelListComponent } from './personnel-list/personnel-list.component';
+import { PersonnelItemComponent } from './personnel-list/personnel-item/personnel-item.component';
+import { JobListComponent } from './job-list/job-list.component';
+import { JobItemComponent } from './job-list/job-item/job-item.component';
+import { TeamListComponent } from './team-list/team-list.component';
+import { TeamItemComponent } from './team-list/team-item/team-item.component';
 
 
 const materialModule = [
@@ -38,7 +38,13 @@ const materialModule = [
     AppComponent,
     CalendarComponent,
     FourOhFourComponent,
-    AddEventComponent
+    AddEventComponent,
+    PersonnelListComponent,
+    PersonnelItemComponent,
+    JobListComponent,
+    JobItemComponent,
+    TeamListComponent,
+    TeamItemComponent
   ],
   imports: [
     BrowserModule,
@@ -51,35 +57,7 @@ const materialModule = [
     HttpClientModule
   ],
   providers: [
-    HttpClient,
-	{
-		provide : TeamsService,
-		useFactory : () => {
-			let teamsService = new TeamsMockService();
-			//TODO preload datas
-
-			return teamsService;
-		},
-		deps : []
-	},
-	{
-		provide : PersonnelService,
-		useFactory : () => {
-			let personnelService = new PersonnelMockService();
-			// TODO preload datas
-
-			return personnelService;
-		}
-	},
-	{
-		provide : JobPositionService,
-		useFactory : () => {
-			let jobPositionService = new JobPositionMockService();
-			// TODO preload datas
-
-			return jobPositionService;
-		}
-	}
+    HttpClient
   ],
   bootstrap: [AppComponent]
 })
