@@ -11,7 +11,7 @@ import { FourOhFourComponent } from './four-oh-four/four-oh-four.component';
 import { AddEventComponent } from './calendar/add-event/add-event.component';
 import { MatDialogModule } from '@angular/material/dialog';
 
-
+import {MatIconModule} from '@angular/material/icon';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatButtonModule} from '@angular/material/button';
@@ -54,7 +54,8 @@ const materialModule = [
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    HttpClientModule
+    HttpClientModule,
+	MatIconModule,
   ],
   providers: [
     HttpClient,
