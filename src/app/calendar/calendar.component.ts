@@ -70,6 +70,7 @@ export class CalendarComponent implements OnInit {
 	ngOnInit(): void {
 		this.eventService.all$().subscribe(events => {
 			this.events = events;
+			console.log(events);
 		})
 	}
 
