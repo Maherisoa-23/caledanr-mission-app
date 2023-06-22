@@ -11,6 +11,9 @@ export class AddEventComponent implements OnInit {
 
   eventForm: FormGroup;
 
+  startDate = '';
+  endDate = '';
+
   constructor(
     private formBuilder : FormBuilder,
     private eventService : EventService
@@ -38,6 +41,10 @@ export class AddEventComponent implements OnInit {
 
   onSubmitForm(){
     
+  }
+
+  openPicker(picker: any) {
+    picker.open();
   }
 
 }

@@ -1,0 +1,47 @@
+<div class="form-container" style="display: flex; justify-content: center;">
+  <form [formGroup]="eventForm" (ngSubmit)="onSubmitForm()" style="display: flex; flex-direction: column; gap: 10px;">
+    <mat-form-field>
+        <mat-label>titre de l'evenement</mat-label>
+        <input matInput formControlName="title" >
+        <mat-error *ngIf="title.hasError('required')">Ce champ est requis</mat-error>
+      </mat-form-field>
+
+      <div class="select-date">
+        <mat-form-field>
+          <input matInput formControlName="start" [matDatepicker]="picker1" placeholder="Sélectionnez un mois">
+          <mat-datepicker-toggle matSuffix [for]="picker1" (click)="openPicker(picker1)"></mat-datepicker-toggle>
+          <mat-datepicker #picker1></mat-datepicker>
+        </mat-form-field>   
+      </div>
+      <div class="select-date">
+        <mat-form-field>
+          <input matInput formControlName="end" [matDatepicker]="picker2" placeholder="Sélectionnez un mois">
+          <mat-datepicker-toggle matSuffix [for]="picker2" (click)="openPicker(picker2)"></mat-datepicker-toggle>
+          <mat-datepicker #picker2></mat-datepicker>
+        </mat-form-field>   
+      </div>
+
+      <mat-form-field>
+        <mat-label>Description du mission</mat-label>
+        <input matInput formControlName="description">
+        <mat-error *ngIf="description.hasError('required')">Ce champ est requis</mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Selectionner l'equipe</mat-label>
+        <mat-select formControlName="team">
+          <mat-option value="{{item.name}}" *ngFor="let item of teams">No: {{item.id}} {{item.name}}</mat-option>
+        </mat-select>
+        <mat-error *ngIf="team.hasError('required')">Ce champ est requis</mat-error>
+      </mat-form-field>
+    
+      <button type="submit" [disabled]="eventForm.invalid"
+      style="display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 15px;
+      padding: 5px 8px 5px 8px;
+      background-color: #0284c7;
+      color: white;"> Confirmer </button>
+  </form>
+</div>

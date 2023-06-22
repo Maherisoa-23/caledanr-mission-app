@@ -1,40 +1,52 @@
-<div class="form-container">
-  <form [formGroup]="eventForm" (ngSubmit)="onSubmitForm()">
-    <mat-form-field>
+<div class="form-container" style="display: flex; justify-content: center;">
+  <form [formGroup]="eventForm" (ngSubmit)="onSubmitForm()" style="display: flex; flex-direction: column; gap: 10px;">
+    <mat-form-field class="form-group">
       <mat-label>titre de l'evenement</mat-label>
-      <input matInput formControlName="title" >
-      <mat-error *ngIf="title.hasError('required')">Ce champ est requis</mat-error>
+      <input matInput formControlName="title">
+      <mat-error style="color: red" class="small-text" *ngIf="title.hasError('required')">Ce champ est requis</mat-error>
     </mat-form-field>
-    <mat-form-field>
-      <mat-label>Date de debut</mat-label>
-      <input matInput formControlName="start">
-      <mat-error *ngIf="start.hasError('required')">Ce champ est requis</mat-error>
-    </mat-form-field>
-    <mat-form-field>
-      <mat-label>Date de fin</mat-label>
-      <input matInput formControlName="end">
-      <mat-error *ngIf="end.hasError('required')">Ce champ est requis</mat-error>
-    </mat-form-field>
-    <mat-form-field>
+
+
+    <div class="select-date">
+      <mat-form-field>
+        <input matInput formControlName="start" [matDatepicker]="picker" placeholder="Sélectionnez un mois">
+        <mat-datepicker-toggle matSuffix [for]="picker" (click)="openPicker(picker)"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>   
+    </div>
+    <div class="select-date">
+      <mat-form-field>
+        <input matInput formControlName="end" [matDatepicker]="picker" placeholder="Sélectionnez un mois">
+        <mat-datepicker-toggle matSuffix [for]="picker" (click)="openPicker(picker)"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>   
+    </div>
+
+
+    <mat-form-field class="form-group">
       <mat-label>titre du mission</mat-label>
       <input matInput formControlName="missionName">
-      <mat-error *ngIf="missionName.hasError('required')">Ce champ est requis</mat-error>
+      <mat-error style="color: red" class="small-text" *ngIf="missionName.hasError('required')">Ce champ est requis</mat-error>
     </mat-form-field>
-    <mat-form-field>
+    <mat-form-field class="form-group">
       <mat-label>Description du mission</mat-label>
       <input matInput formControlName="missionDescription">
-      <mat-error *ngIf="missionDescription.hasError('required')">Ce champ est requis</mat-error>
+      <mat-error style="color: red" class="small-text" *ngIf="missionDescription.hasError('required')">Ce champ est requis</mat-error>
     </mat-form-field>
-    <mat-form-field>
-      <mat-label>Selectionner l'equipe</mat-label>
-      <mat-select formControlName="team">
-        <mat-option value="option">Equipe 1</mat-option>
-        <mat-option value="option">Equipe 2</mat-option>
-        <mat-option value="option">Equipe 3</mat-option>
-      </mat-select>
-      <mat-error *ngIf="team.hasError('required')">Ce champ est requis</mat-error>
-    </mat-form-field>
-  
-    <button type="submit" [disabled]="eventForm.invalid"> Confirmer </button>
+      <label>Selectionner l'equipe</label>
+      <select formControlName="team">
+        <option value="option">Equipe 1</option>
+        <option value="option">Equipe 2</option>
+        <option value="option">Equipe 3</option>
+      </select>
+      <mat-error style="color: red" class="small-text" *ngIf="team.hasError('required')">Ce champ est requis</mat-error>
+
+    <button type="submit" [disabled]="eventForm.invalid" style="display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 15px;
+      padding: 5px 8px 5px 8px;
+      background-color: #0284c7;
+      color: white;"> Confirmer </button>
   </form>
 </div>

@@ -7,6 +7,8 @@ import { JobListComponent } from './components/job-list/job-list.component';
 import { PersonnelListComponent } from './components/personnel-list/personnel-list.component';
 import { EventListComponent } from './components/event-list/event-list.component';
 import { LandingPageComponent } from './components/landing-page/landing-page.component';
+import { AddEventComponent } from './components/calendar/add-event/add-event.component';
+import { EventAddComponent } from './components/event-list/event-add/event-add.component';
 
 const routes: Routes = [
   { path: '', component:LandingPageComponent},
@@ -16,6 +18,7 @@ const routes: Routes = [
   { path: 'job', component:JobListComponent},
   { path: 'team', component:TeamListComponent},
   { path: 'event', component:EventListComponent},
+  { path: 'event/add', component:EventAddComponent},
   { path: 'not-found', component:FourOhFourComponent},
   { path: '**', redirectTo : 'not-found'},
 

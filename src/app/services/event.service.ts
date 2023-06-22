@@ -38,10 +38,19 @@ export class EventService {
 		);
   }
 
-  saveEvents$(event: IEvent[]) : Observable<void>
+  saveEvents$(event: IEvent) : Observable<void>
   {
 	return this.httpClient
 				.put('https://calendar-app-c2037-default-rtdb.firebaseio.com/events.json', event)
+				.pipe(
+					map(_ => {})
+				)
+  }
+
+  addEvents$(event: IEvent) : Observable<void>
+  {
+	return this.httpClient
+				.post('https://calendar-app-c2037-default-rtdb.firebaseio.com/events.json', event)
 				.pipe(
 					map(_ => {})
 				)

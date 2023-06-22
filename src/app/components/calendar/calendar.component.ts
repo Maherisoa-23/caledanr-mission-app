@@ -133,7 +133,6 @@ export class CalendarComponent implements OnInit, OnDestroy {
       const element = events[index];
       this.initialEvent.push(
         {
-          id: element.id.toString(),
           title: element.title,
           start: new Date(element.start),
           end: new Date(element.end),

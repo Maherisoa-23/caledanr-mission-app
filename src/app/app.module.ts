@@ -27,14 +27,20 @@ import { PersonnelListComponent } from './components/personnel-list/personnel-li
 import { EventListComponent } from './components/event-list/event-list.component';
 import { EventItemComponent } from './components/event-list/event-item/event-item.component';
 import { LandingPageComponent } from './components/landing-page/landing-page.component';
-
+import {MatIconModule} from '@angular/material/icon';
+import { EventAddComponent } from './components/event-list/event-add/event-add.component';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatNativeDateModule} from '@angular/material/core';
 
 const materialModule = [
   MatButtonModule,
   MatDialogModule,
   MatFormFieldModule, 
   MatInputModule,
-  MatSelectModule
+  MatSelectModule,
+  MatIconModule,
+  MatDatepickerModule,
+  MatNativeDateModule
 ]
 @NgModule({
   declarations: [
@@ -50,7 +56,8 @@ const materialModule = [
     TeamItemComponent,
     EventListComponent,
     EventItemComponent,
-    LandingPageComponent
+    LandingPageComponent,
+    EventAddComponent
   ],
   imports: [
     BrowserModule,
