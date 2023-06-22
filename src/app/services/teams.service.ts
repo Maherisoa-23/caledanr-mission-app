@@ -14,7 +14,7 @@ export class TeamsService {
       private httpClient: HttpClient
     ) { }
   
-    getteam$(): Observable<ITeam[]> {
+    getTeam$(): Observable<ITeam[]> {
       return this.httpClient.get<ITeam[]>('https://calendar-app-c2037-default-rtdb.firebaseio.com/teams.json')
           .pipe(
               catchError((error: Error) => {

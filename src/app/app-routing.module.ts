@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { CalendarComponent } from './calendar/calendar.component';
-import { FourOhFourComponent } from './four-oh-four/four-oh-four.component';
-import { PersonnelListComponent } from './personnel-list/personnel-list.component';
-import { JobListComponent } from './job-list/job-list.component';
-import { TeamListComponent } from './team-list/team-list.component';
+import { TeamListComponent } from './components/team-list/team-list.component';
+import { CalendarComponent } from './components/calendar/calendar.component';
+import { FourOhFourComponent } from './components/four-oh-four/four-oh-four.component';
+import { JobListComponent } from './components/job-list/job-list.component';
+import { PersonnelListComponent } from './components/personnel-list/personnel-list.component';
 
 const routes: Routes = [
   { path: '', component:CalendarComponent},

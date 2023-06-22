@@ -6,9 +6,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import { FullCalendarModule } from '@fullcalendar/angular';
-import { CalendarComponent } from './calendar/calendar.component';
-import { FourOhFourComponent } from './four-oh-four/four-oh-four.component';
-import { AddEventComponent } from './calendar/add-event/add-event.component';
 import { MatDialogModule } from '@angular/material/dialog';
 
 
@@ -18,12 +15,15 @@ import {MatButtonModule} from '@angular/material/button';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {MatSelectModule} from '@angular/material/select';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { PersonnelListComponent } from './personnel-list/personnel-list.component';
-import { PersonnelItemComponent } from './personnel-list/personnel-item/personnel-item.component';
-import { JobListComponent } from './job-list/job-list.component';
-import { JobItemComponent } from './job-list/job-item/job-item.component';
-import { TeamListComponent } from './team-list/team-list.component';
-import { TeamItemComponent } from './team-list/team-item/team-item.component';
+import { TeamListComponent } from './components/team-list/team-list.component';
+import { TeamItemComponent } from './components/team-list/team-item/team-item.component';
+import { AddEventComponent } from './components/calendar/add-event/add-event.component';
+import { CalendarComponent } from './components/calendar/calendar.component';
+import { FourOhFourComponent } from './components/four-oh-four/four-oh-four.component';
+import { JobItemComponent } from './components/job-list/job-item/job-item.component';
+import { JobListComponent } from './components/job-list/job-list.component';
+import { PersonnelItemComponent } from './components/personnel-list/personnel-item/personnel-item.component';
+import { PersonnelListComponent } from './components/personnel-list/personnel-list.component';
 
 
 const materialModule = [

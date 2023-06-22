@@ -1,12 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { PersonnelService } from '../services/personnel.service';
 import { IPersonnel } from 'models/personnel.model';
-import personnel from '../services/mocks/personnel.mock';
+import { PersonnelService } from 'src/app/services/personnel.service';
 
 @Component({
   selector: 'app-personnel-list',
-  templateUrl: './personnel-list.component.html',
-  styleUrls: ['./personnel-list.component.scss']
+  templateUrl: 'personnel-list.component.html',
+  styleUrls: ['personnel-list.component.scss']
 })
 export class PersonnelListComponent implements OnInit {
   
@@ -16,7 +15,12 @@ export class PersonnelListComponent implements OnInit {
     private personnelService : PersonnelService
   ) { }
 
-  async ngOnInit() {
+  ngOnInit() {
+    this.personnelService.getPersonnel$().subscribe(
+      (values) => {
+        this.personnels = values;
+      }
+    )
   }
 
 }

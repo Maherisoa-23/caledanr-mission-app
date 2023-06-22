@@ -9,15 +9,14 @@ import listPlugin from '@fullcalendar/list';
 
 import { INITIAL_EVENTS, createEventId } from './event-utils';
 import { AddEventComponent } from './add-event/add-event.component';
-import { EventService } from '../services/event.service';
 import { Subscription } from 'rxjs';
 import { IEvent } from 'models/event';
-import events from '../services/mocks/event.mock';
+import { EventService } from 'src/app/services/event.service';
 
 @Component({
   selector: 'app-calendar',
-  templateUrl: './calendar.component.html',
-  styleUrls: ['./calendar.component.scss']
+  templateUrl: 'calendar.component.html',
+  styleUrls: ['calendar.component.scss']
 })
 export class CalendarComponent implements OnInit, OnDestroy {
   calendarVisible = true;

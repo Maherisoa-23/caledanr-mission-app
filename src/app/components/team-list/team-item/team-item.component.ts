@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { ITeam } from 'models/team';
 
 @Component({
   selector: 'app-team-item',
@@ -6,8 +7,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./team-item.component.scss']
 })
 export class TeamItemComponent implements OnInit {
+  
+  @Input() team : ITeam | null = null;
 
-  constructor() { }
+  constructor() {
+   }
 
   ngOnInit(): void {
   }

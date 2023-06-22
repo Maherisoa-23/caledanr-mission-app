@@ -1,0 +1,9 @@
+    <div class="ms-2 me-auto">
+      <div class="fw-bold">Team : {{team?.name}}</div>
+      <p *ngFor="let item of team?.personnal">
+        {{item.firstname}}
+      </p>
+    </div>
+    <span class="badge bg-primary rounded-pill" *ngIf="team?.personnal?.length">{{team?.personnal?.length}}</span>
+    <span class="badge bg-primary rounded-pill" *ngIf="!team?.personnal?.length">0</span>
+
