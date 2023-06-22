@@ -1,4 +1,5 @@
-export interface IMemeber {
+export interface IMember {
     id      : number,
-    name    : string
+    name    : string,
+	image?  : string;
 }
