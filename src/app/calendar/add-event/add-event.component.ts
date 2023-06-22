@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MatDialogRef } from '@angular/material/dialog';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-add-event',
@@ -12,25 +11,31 @@ export class AddEventComponent implements OnInit {
   eventForm: FormGroup;
 
   constructor(
-    public dialogRef: MatDialogRef<AddEventComponent>,
     private formBuilder : FormBuilder
   ) { 
     this.eventForm = this.formBuilder.group({
-			name: ['', [Validators.required, Validators.minLength(5)]],
-			description: ['', [Validators.required, Validators.minLength(10)]],
-			remarks: [''],
-			reference: [null, [Validators.required, Validators.pattern(/^\d+$/)]],
-			category: [null, [Validators.required]], // ToBe: iCategory
-			price: [null, [Validators.min(100)]],
-			buyingPrice: [null, [Validators.min(100)]],
-			quantity: [1, [Validators.min(1)]],
-			image: [null],
-			newGroup: [null], // ToBe : : iArticleGroup
-			group: [{ value: '', disabled: false }] // ToBe: iArticle Group
+			title: ['', [Validators.required]],
+			start: ['', [Validators.required]],
+			end: ['', [Validators.required]],
+      missionName:  ['', [Validators.required]],
+      missionDescription: ['', [Validators.required]],
+      team : ['', [Validators.required]]
 		});
   }
 
+  get title(): FormControl { return this.eventForm.get('title') as FormControl; }
+  get start(): FormControl { return this.eventForm.get('start') as FormControl; }
+  get end(): FormControl { return this.eventForm.get('end') as FormControl; }
+  get missionName(): FormControl { return this.eventForm.get('missionName') as FormControl; }
+  get missionDescription(): FormControl { return this.eventForm.get('missionDescription') as FormControl; }
+  get team(): FormControl { return this.eventForm.get('team') as FormControl; }
+
+
   ngOnInit(): void {
+  }
+
+  onSubmitForm(){
+    console.log('form value : ', this.eventForm.value)
   }
 
 }

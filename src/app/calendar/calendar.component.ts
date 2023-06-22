@@ -91,7 +91,8 @@ export class CalendarComponent implements OnInit {
 
   openDialog(enterAnimationDuration: string, exitAnimationDuration: string): void {
     this.dialog.open(AddEventComponent, {
-      width: '250px',
+      width: '100%',
+      height: '20rem',
       enterAnimationDuration,
       exitAnimationDuration,
     });
