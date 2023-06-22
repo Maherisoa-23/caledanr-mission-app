@@ -42,11 +42,13 @@ export class CalendarComponent implements OnInit, OnDestroy {
 
   async ngOnInit() {
     //this.eventService.saveEvents();
-    await this.eventService.getEvents();
-    setTimeout(() => {
-      console.log('events ohh : ', this.initialEvent)
-      this.formatData(this.events);
-    }, 500);
+    await this.eventService.getEvents$().subscribe(
+      (values) => {
+        this.events = values;
+        console.log('izy : ', this.events)
+
+      }
+    )
   }
 
 
