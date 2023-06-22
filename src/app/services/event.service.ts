@@ -3,9 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, Subject, Subscription } from 'rxjs';
 import { IEvent } from 'models/event';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class EventService {
   private events : any[] = [];
   eventsSubject = new Subject<any[]>();
@@ -50,5 +48,6 @@ export class EventService {
   )
   }
 
+  
 
 }

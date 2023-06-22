@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, Inject, OnDestroy, OnInit } from '@angular/core';
 import { CalendarOptions, DateSelectArg, EventApi, EventClickArg } from '@fullcalendar/core';
 import { MatDialog, MatDialogRef, MatDialogModule } from '@angular/material/dialog';
 import interactionPlugin from '@fullcalendar/interaction';
@@ -9,38 +9,35 @@ import listPlugin from '@fullcalendar/list';
 import { INITIAL_EVENTS, createEventId } from './event-utils';
 import { AddEventComponent } from './add-event/add-event.component';
 import { EventService } from '../services/event.service';
-import { Subscription } from 'rxjs';
+import { BehaviorSubject, Subscription } from 'rxjs';
 import { IEvent } from 'models/event';
+import { Router } from '@angular/router';
+import { CommonCrudService } from '../services/common.service';
 
 @Component({
 	selector: 'app-calendar',
 	templateUrl: './calendar.component.html',
 	styleUrls: ['./calendar.component.scss']
 })
-export class CalendarComponent implements OnInit, OnDestroy {
+export class CalendarComponent implements OnInit {
 	calendarVisible = true;
 
 	currentEvents: EventApi[] = [];
 
-	calendarOptions: CalendarOptions;
+	_calendarOptions$ : BehaviorSubject<CalendarOptions>;
 
+	calendarDefaultOption : CalendarOptions;
 	events: IEvent[] = [];
-	eventSubscription: Subscription;
+
 
 	constructor(
-		public dialog: MatDialog,
-		private eventService: EventService
+		public dialog        : MatDialog,
+		@Inject(EventService) private eventService : CommonCrudService<IEvent>,
+		private readonly router : Router,
 	) {
-		this.eventSubscription = this.eventService.eventsSubject.subscribe(
-			(events: IEvent[]) => {
-				this.events = events;
-			}
-		);
+		
 
-		this.eventService.emitEvents();
-
-
-		this.calendarOptions = {
+		this.calendarDefaultOption = {
 			plugins: [
 				interactionPlugin,
 				dayGridPlugin,
@@ -53,26 +50,27 @@ export class CalendarComponent implements OnInit, OnDestroy {
 				right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
 			},
 			initialView: 'dayGridMonth',
-			// initialEvents: INITIAL_EVENTS, // alternatively, use the `events` setting to fetch from a feed
-			initialEvents: [{ title: 'Meeting', start: new Date() }],
+			initialEvents: [
+				// { title: 'Meeting', start: new Date() }
+			],
 			weekends: true,
 			editable: true,
 			selectable: true,
 			selectMirror: true,
 			dayMaxEvents: true,
 			eventMouseEnter : this.onHoverEnter.bind(this),
-			eventMouseLeave : this.onHoverLeave.bind(this)
+			eventMouseLeave : this.onHoverLeave.bind(this),
 			// select: this.handleDateSelect.bind(this),
-			// eventClick: this.handleEventClick.bind(this),
+			eventClick: this.onClick.bind(this),
 			// eventsSet: this.handleEvents.bind(this)
 		};
-	}
-	ngOnDestroy(): void {
-		this.eventSubscription.unsubscribe();
+		this._calendarOptions$ = new BehaviorSubject<CalendarOptions>(this.calendarDefaultOption);
 	}
 
 	ngOnInit(): void {
-		this.eventService.getEvents();
+		this.eventService.all$().subscribe(events => {
+			this.events = events;
+		})
 	}
 
 	onHoverEnter(...args: any[])
@@ -84,4 +82,22 @@ export class CalendarComponent implements OnInit, OnDestroy {
 	{
 
 	}
+	onClick(...args: any[])
+	{
+		console.log('click, ', args);
+		// this.router.navigate(['details'])
+	}
+
+	addEvent()
+	{
+		
+	}
+
+	get calendarOptions$()
+	{
+		return this._calendarOptions$.asObservable();
+	}
+
 }
+
+

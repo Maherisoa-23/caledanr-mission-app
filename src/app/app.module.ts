@@ -26,6 +26,8 @@ import { JobPositionMockService } from './services/mocks/job-position.mock.servi
 import { JobPositionService } from './services/job-position.service';
 import { PersonnelsComponent } from './personnels/personnels.component';
 import { LoginComponent } from './login/login.component';
+import { EventsMockService } from './services/mocks/events.mock.service';
+import { EventService } from './services/event.service';
 
 
 const materialModule = [
@@ -82,6 +84,15 @@ const materialModule = [
 			// TODO preload datas
 
 			return jobPositionService;
+		}
+	},
+	{
+		provide : EventService, 
+		useFactory : () => {
+			let eventService = new EventsMockService();
+			// TODO preload datas
+			
+			return eventService;
 		}
 	}
   ],
