@@ -24,6 +24,7 @@ import { PersonnelMockService } from './services/mocks/personnel.mock.service';
 import { PersonnelService } from './services/personnel.service';
 import { JobPositionMockService } from './services/mocks/job-position.mock.service';
 import { JobPositionService } from './services/job-position.service';
+import { PersonnelsComponent } from './personnels/personnels.component';
 
 
 const materialModule = [
@@ -38,7 +39,8 @@ const materialModule = [
     AppComponent,
     CalendarComponent,
     FourOhFourComponent,
-    AddEventComponent
+    AddEventComponent,
+    PersonnelsComponent
   ],
   imports: [
     BrowserModule,
