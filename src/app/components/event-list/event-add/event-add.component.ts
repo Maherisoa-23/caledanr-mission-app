@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
+import { Router } from '@angular/router';
 import { IEvent } from 'models/event';
 import { ITeam } from 'models/team';
 import { EventService } from 'src/app/services/event.service';
@@ -21,7 +22,8 @@ export class EventAddComponent implements OnInit {
   constructor(
     private formBuilder : FormBuilder,
     private eventService : EventService,
-    private teamService : TeamsService
+    private teamService : TeamsService,
+    private route : Router
   ) { 
     this.eventForm = this.formBuilder.group({
 			title: ['', [Validators.required]],
@@ -77,6 +79,8 @@ export class EventAddComponent implements OnInit {
         console.log('event enregistre')
       }
     )
+
+    this.route.navigate(['']);
   }
 
 }
