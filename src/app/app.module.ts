@@ -18,6 +18,10 @@ import {MatButtonModule} from '@angular/material/button';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {MatSelectModule} from '@angular/material/select';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { TeamsService } from './services/teams.service';
+import { TeamsMockService } from './services/mocks/teams.mock.service';
+import { PersonnelMockService } from './services/mocks/personnel.mock.service';
+import { PersonnelService } from './services/personnel.service';
 
 
 const materialModule = [
@@ -45,7 +49,26 @@ const materialModule = [
     HttpClientModule
   ],
   providers: [
-    HttpClient
+    HttpClient,
+	{
+		provide : TeamsService,
+		useFactory : () => {
+			let teamsService = new TeamsMockService();
+			//TODO preload datas
+
+			return teamsService;
+		},
+		deps : []
+	},
+	{
+		provide : PersonnelService,
+		useFactory : () => {
+			let personnelService = new PersonnelMockService();
+			// TODO preload datas
+
+			return personnelService;
+		}
+	}
   ],
   bootstrap: [AppComponent]
 })

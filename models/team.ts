@@ -1,6 +1,7 @@
-import { IMemeber } from "./member";
+import { IMember } from "./member";
 
 export interface ITeam {
-    name        : string,
-    members     : IMemeber[]
+	id?     : number;
+    name    : string;
+    members : IMember[];
 }
