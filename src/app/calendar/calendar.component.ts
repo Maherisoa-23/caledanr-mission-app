@@ -51,7 +51,7 @@ export class CalendarComponent implements OnInit {
 			},
 			initialView: 'dayGridMonth',
 			initialEvents: [
-				// { title: 'Meeting', start: new Date() }
+				{ title: 'Meeting', start: new Date() }
 			],
 			weekends: true,
 			editable: true,
