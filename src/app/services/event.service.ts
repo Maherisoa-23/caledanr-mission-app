@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, Subject, Subscription } from 'rxjs';
+import { Observable, Subject, Subscription, catchError, map, tap, throwError } from 'rxjs';
 import { IEvent } from 'models/event';
 
 @Injectable({
@@ -146,6 +146,30 @@ export class EventService {
     }
   )
   }
+
+  getEvents$(): Observable<IEvent[]> {
+    return this.httpClient.get<IEvent[]>('https://calendar-app-c2037-default-rtdb.firebaseio.com/events.json')
+		.pipe(
+			catchError((error: Error) => {
+				console.error('[ErrorGettingEvents]',  error);
+				return throwError (()=> error)
+			}),
+			tap((events) => {
+				this.events = events;
+				this.emitEvents();
+			})
+		);
+  }
+
+  saveEvents$(events: IEvent[]) : Observable<void>
+  {
+	return this.httpClient
+				.put('https://calendar-app-c2037-default-rtdb.firebaseio.com/events.json', events)
+				.pipe(
+					map(_ => {})
+				)
+  }
+
 
 
 }
