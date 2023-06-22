@@ -22,6 +22,8 @@ import { TeamsService } from './services/teams.service';
 import { TeamsMockService } from './services/mocks/teams.mock.service';
 import { PersonnelMockService } from './services/mocks/personnel.mock.service';
 import { PersonnelService } from './services/personnel.service';
+import { JobPositionMockService } from './services/mocks/job-position.mock.service';
+import { JobPositionService } from './services/job-position.service';
 
 
 const materialModule = [
@@ -67,6 +69,15 @@ const materialModule = [
 			// TODO preload datas
 
 			return personnelService;
+		}
+	},
+	{
+		provide : JobPositionService,
+		useFactory : () => {
+			let jobPositionService = new JobPositionMockService();
+			// TODO preload datas
+
+			return jobPositionService;
 		}
 	}
   ],
